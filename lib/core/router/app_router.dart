@@ -16,6 +16,8 @@ import '../../features/cards/screens/cards_screen.dart';
 import '../../features/kyc/screens/kyc_screen.dart';
 import '../../features/profile/screens/profile_screen.dart';
 import '../../features/notifications/screens/notifications_screen.dart';
+import '../../features/wallet/screens/wallet_screen.dart';
+import '../../features/wallet/screens/internal_transfer_screen.dart';
 import '../shell/main_shell.dart';
 
 final _storage = const FlutterSecureStorage();
@@ -63,6 +65,16 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(path: '/kyc',           builder: (c, s) => const KycScreen()),
           GoRoute(path: '/profil',        builder: (c, s) => const ProfileScreen()),
           GoRoute(path: '/notifications', builder: (c, s) => const NotificationsScreen()),
+          GoRoute(
+            path: '/wallet',
+            builder: (c, s) => const WalletScreen(),
+            routes: [
+              GoRoute(
+                path: 'transfer',
+                builder: (c, s) => const InternalTransferScreen(),
+              ),
+            ],
+          ),
         ],
       ),
     ],

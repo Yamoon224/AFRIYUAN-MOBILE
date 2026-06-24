@@ -39,4 +39,14 @@ class Endpoints {
   // Notifications
   static const String notifications        = '/v1/notifications';
   static const String notificationsReadAll = '/v1/notifications/read-all';
+
+  // Wallet
+  static const String wallet              = '/v1/wallet';
+  static const String walletTransactions  = '/v1/wallet/transactions';
+  static const String walletTopUp         = '/v1/wallet/topup';
+  static const String walletWithdraw      = '/v1/wallet/withdraw';
+
+  // Internal transfers
+  static const String internalTransfers         = '/v1/internal-transfers';
+  static const String internalTransferSearch    = '/v1/internal-transfers/search-recipient';
 }
