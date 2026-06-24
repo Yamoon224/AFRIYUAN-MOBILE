@@ -23,7 +23,7 @@ final dashboardProvider = FutureProvider<DashboardData>((ref) async {
   final api = ApiClient.instance;
 
   final results = await Future.wait([
-    api.get(Endpoints.transactions, queryParameters: {'status': 'completed', 'per_page': 5}),
+    api.get(Endpoints.transfers, queryParameters: {'status': 'completed', 'per_page': 5}),
     api.get(Endpoints.exchangeRates),
     api.get(Endpoints.beneficiaries),
   ]);

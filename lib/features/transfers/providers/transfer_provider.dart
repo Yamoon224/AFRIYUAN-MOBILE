@@ -31,7 +31,7 @@ class TransferNotifier extends StateNotifier<TransferState> {
     state = state.copyWith(isLoading: true);
 
     try {
-      final res = await ApiClient.instance.get(Endpoints.transactions, queryParameters: {'page': state.currentPage, 'per_page': 15});
+      final res = await ApiClient.instance.get(Endpoints.transfers, queryParameters: {'page': state.currentPage, 'per_page': 15});
       final data  = (res.data['data'] as List).map((j) => TransactionModel.fromJson(j)).toList();
       final total = res.data['meta']?['total'] ?? data.length;
 
