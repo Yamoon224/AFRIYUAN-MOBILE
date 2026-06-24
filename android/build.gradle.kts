@@ -23,6 +23,11 @@ gradle.afterProject {
     extensions.findByType<com.android.build.gradle.LibraryExtension>()?.apply {
         compileSdk = 36
     }
+    if (project.name == "stripe_android") {
+        configurations.all {
+            exclude(group = "com.stripe", module = "stripe-android-issuing-push-provisioning")
+        }
+    }
 }
 
 tasks.register<Delete>("clean") {
