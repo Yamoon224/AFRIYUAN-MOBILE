@@ -41,14 +41,11 @@ class _InternalTransferScreenState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // ── Recipient search ─────────────────────────────────────────
-            Text(l10n.recipient,
-                style: const TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 8),
-
             if (state.selectedRecipient == null) ...[
               TextField(
                 controller: _searchCtrl,
                 decoration: InputDecoration(
+                  labelText: l10n.recipient,
                   hintText: l10n.searchRecipient,
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: state.searching
@@ -140,24 +137,18 @@ class _InternalTransferScreenState
             const SizedBox(height: 20),
 
             // ── Amount ──────────────────────────────────────────────────
-            Text(l10n.transferAmount,
-                style: const TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 8),
             TextField(
               controller: _amountCtrl,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(hintText: '0.00'),
+              decoration: InputDecoration(labelText: l10n.transferAmount, hintText: '0.00'),
             ),
 
             const SizedBox(height: 16),
 
             // ── Description ─────────────────────────────────────────────
-            Text(l10n.description,
-                style: const TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 8),
             TextField(
               controller: _descCtrl,
-              decoration: InputDecoration(hintText: l10n.description),
+              decoration: InputDecoration(labelText: l10n.description),
             ),
 
             const Spacer(),

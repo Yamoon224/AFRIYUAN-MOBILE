@@ -71,16 +71,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: 16),
                 ],
 
-                _label('Adresse email'),
-                _field(controller: _emailCtrl, hint: 'vous@exemple.com', keyboard: TextInputType.emailAddress,
+                _field(controller: _emailCtrl, label: 'Adresse email', hint: 'vous@exemple.com', keyboard: TextInputType.emailAddress,
                   validator: (v) => v!.isEmpty ? 'Email requis' : null),
                 const SizedBox(height: 16),
 
-                _label('Mot de passe'),
                 TextFormField(
                   controller: _passCtrl,
                   obscureText: _obscure,
-                  decoration: _inputDec('••••••••').copyWith(
+                  decoration: _inputDec('Mot de passe', '••••••••').copyWith(
                     suffixIcon: IconButton(
                       icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey[400], size: 20),
                       onPressed: () => setState(() => _obscure = !_obscure),
@@ -128,15 +126,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 
-  Widget _label(String text) => Padding(
-    padding: const EdgeInsets.only(bottom: 6),
-    child: Text(text, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFF374151))),
-  );
+  Widget _field({required TextEditingController controller, required String label, required String hint, TextInputType? keyboard, String? Function(String?)? validator}) =>
+      TextFormField(controller: controller, keyboardType: keyboard, decoration: _inputDec(label, hint), validator: validator);
 
-  Widget _field({required TextEditingController controller, required String hint, TextInputType? keyboard, String? Function(String?)? validator}) =>
-      TextFormField(controller: controller, keyboardType: keyboard, decoration: _inputDec(hint), validator: validator);
-
-  InputDecoration _inputDec(String hint) => InputDecoration(
+  InputDecoration _inputDec(String label, String hint) => InputDecoration(
+    labelText: label,
     hintText: hint,
     hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
     filled: true,
@@ -146,6 +140,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFD4132B), width: 1.5)),
     errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFDC2626))),
     focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFDC2626), width: 1.5)),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
   );
 }

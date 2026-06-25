@@ -120,6 +120,8 @@ class _TransferWizardState extends ConsumerState<TransferWizardScreen> {
         child: DropdownButton<String>(
           value: _direction == 'africa_to_china' ? _fromCurrency : 'CNY',
           isExpanded: true,
+          dropdownColor: Colors.white,
+          style: const TextStyle(color: Color(0xFF111827), fontSize: 14),
           items: (_direction == 'africa_to_china' ? _africanCurrencies : ['CNY']).map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
           onChanged: (v) { if (_direction == 'africa_to_china') setState(() => _fromCurrency = v!); },
         ),
@@ -127,19 +129,18 @@ class _TransferWizardState extends ConsumerState<TransferWizardScreen> {
     ),
     const SizedBox(height: 16),
 
-    const Text('Montant à envoyer', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Color(0xFF374151))),
-    const SizedBox(height: 8),
     TextField(
       controller: _amountCtrl,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
+        labelText: 'Montant à envoyer',
         hintText: '100 000',
         filled: true, fillColor: const Color(0xFFF9FAFB),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
         focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFD4132B), width: 1.5)),
         suffixText: _direction == 'africa_to_china' ? _fromCurrency : 'CNY',
-        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
       ),
       onChanged: (_) { _quote = null; setState(() {}); },
     ),

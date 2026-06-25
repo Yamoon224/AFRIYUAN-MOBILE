@@ -80,10 +80,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   Expanded(child: _section('Nom', _lastCtrl, 'Kouassi')),
                 ]),
                 const SizedBox(height: 16),
-                _section('Adresse email', _emailCtrl, 'vous@exemple.com', keyboard: TextInputType.emailAddress),
+                _section('Email', _emailCtrl, 'vous@exemple.com', keyboard: TextInputType.emailAddress),
                 const SizedBox(height: 16),
 
-                _label('Téléphone'),
                 Row(children: [
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -95,30 +94,30 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         value: _phoneCode,
-                        items: _phoneCodes.map((e) => DropdownMenuItem(value: e.$1, child: Text('${e.$1} ${e.$2}', style: const TextStyle(fontSize: 13)))).toList(),
+                        dropdownColor: Colors.white,
+                        items: _phoneCodes.map((e) => DropdownMenuItem(value: e.$1, child: Text('${e.$1} ${e.$2}', style: const TextStyle(fontSize: 13, color: Color(0xFF111827))))).toList(),
                         onChanged: (v) => setState(() => _phoneCode = v!),
                         style: const TextStyle(color: Color(0xFF111827), fontSize: 13),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Expanded(child: TextFormField(controller: _phoneCtrl, keyboardType: TextInputType.phone, decoration: _inputDec('07 00 00 00 00'), validator: (v) => v!.isEmpty ? 'Requis' : null)),
+                  Expanded(child: TextFormField(controller: _phoneCtrl, keyboardType: TextInputType.phone, decoration: _inputDec('Téléphone', '07 00 00 00 00'), validator: (v) => v!.isEmpty ? 'Requis' : null)),
                 ]),
                 const SizedBox(height: 16),
 
-                _label('Mot de passe'),
                 TextFormField(
                   controller: _passCtrl,
                   obscureText: _obscure,
-                  decoration: _inputDec('Au moins 8 caractères').copyWith(
+                  decoration: _inputDec('Mot de passe', 'Au moins 8 caractères').copyWith(
                     suffixIcon: IconButton(icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey[400], size: 20), onPressed: () => setState(() => _obscure = !_obscure)),
                   ),
                   validator: (v) => v!.length < 8 ? 'Minimum 8 caractères' : null,
                 ),
                 const SizedBox(height: 16),
 
-                _section('Confirmer le mot de passe', _confirmCtrl, '••••••••', obscure: true,
-                  validator: (v) => v != _passCtrl.text ? 'Les mots de passe ne correspondent pas' : null),
+                _section('Confirmer le mot de passe', _confirmCtrl, '••••••••',
+                  obscure: true, validator: (v) => v != _passCtrl.text ? 'Les mots de passe ne correspondent pas' : null),
                 const SizedBox(height: 28),
 
                 SizedBox(
@@ -152,17 +151,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     child: Text(msg, style: const TextStyle(color: Color(0xFFDC2626), fontSize: 13)),
   );
 
-  Widget _label(String text) => Padding(padding: const EdgeInsets.only(bottom: 6), child: Text(text, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFF374151))));
+  Widget _section(String label, TextEditingController ctrl, String hint, {TextInputType? keyboard, bool obscure = false, String? Function(String?)? validator}) =>
+    TextFormField(controller: ctrl, keyboardType: keyboard, obscureText: obscure, decoration: _inputDec(label, hint), validator: validator ?? (v) => v!.isEmpty ? 'Requis' : null);
 
-  Widget _section(String label, TextEditingController ctrl, String hint, {TextInputType? keyboard, bool obscure = false, String? Function(String?)? validator}) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      _label(label),
-      TextFormField(controller: ctrl, keyboardType: keyboard, obscureText: obscure, decoration: _inputDec(hint), validator: validator ?? (v) => v!.isEmpty ? 'Requis' : null),
-    ],
-  );
-
-  InputDecoration _inputDec(String hint) => InputDecoration(
+  InputDecoration _inputDec(String label, String hint) => InputDecoration(
+    labelText: label,
     hintText: hint, hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
     filled: true, fillColor: const Color(0xFFF9FAFB),
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
@@ -170,6 +163,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFD4132B), width: 1.5)),
     errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFDC2626))),
     focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFDC2626), width: 1.5)),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
   );
 }

@@ -298,21 +298,11 @@ class ProfileScreen extends ConsumerWidget {
     TextInputType? keyboard,
     bool obscure = false,
   }) =>
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label,
-              style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textSecondary)),
-          const SizedBox(height: 6),
-          TextField(
-            controller: ctrl,
-            keyboardType: keyboard,
-            obscureText: obscure,
-          ),
-        ],
+      TextField(
+        controller: ctrl,
+        keyboardType: keyboard,
+        obscureText: obscure,
+        decoration: InputDecoration(labelText: label),
       );
 }
 

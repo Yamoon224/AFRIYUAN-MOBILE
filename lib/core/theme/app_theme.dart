@@ -57,6 +57,9 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.surface,
+      floatingLabelBehavior: FloatingLabelBehavior.auto,
+      labelStyle: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+      floatingLabelStyle: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w500, fontSize: 13),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColors.border),
@@ -69,7 +72,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColors.primary, width: 2),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     ),
     cardTheme: CardThemeData(
       color: AppColors.surface,
@@ -114,6 +117,9 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColorsDark.card,
+      floatingLabelBehavior: FloatingLabelBehavior.auto,
+      labelStyle: const TextStyle(color: AppColorsDark.textSecondary, fontSize: 14),
+      floatingLabelStyle: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w500, fontSize: 13),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColorsDark.border),
@@ -127,7 +133,7 @@ class AppTheme {
         borderSide: const BorderSide(color: AppColors.primary, width: 2),
       ),
       hintStyle: const TextStyle(color: AppColorsDark.textSecondary),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     ),
     cardTheme: CardThemeData(
       color: AppColorsDark.card,

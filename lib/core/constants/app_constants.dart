@@ -3,7 +3,7 @@ class AppConstants {
   static const String appVersion = '1.0.0';
 
   // API
-  static const String apiBaseUrl = 'http://afriyuan.test/api/v1';
+  static const String apiBaseUrl = 'https://afriyuan.jss-gn.com/api/v1';
   static const int apiTimeoutSeconds = 30;
 
   // Stripe

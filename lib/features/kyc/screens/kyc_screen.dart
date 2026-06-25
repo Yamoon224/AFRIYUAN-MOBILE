@@ -155,6 +155,8 @@ class _KycScreenState extends ConsumerState<KycScreen> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: _docType, isExpanded: true,
+                      dropdownColor: Colors.white,
+                      style: const TextStyle(color: Color(0xFF111827), fontSize: 14),
                       items: _docTypes.map((t) => DropdownMenuItem(value: t.$1, child: Text(t.$2))).toList(),
                       onChanged: (v) => setState(() => _docType = v!),
                     ),
